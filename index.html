@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A simple student management dashboard for organizing student records.">
+    <title>Student Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="#" aria-label="Student Management System home">
+            <span class="brand-icon">S</span>
+            <span>Student<span class="brand-accent">Hub</span></span>
+        </a>
+
+        <nav aria-label="Main navigation">
+            <a class="nav-link active" href="#dashboard">Dashboard</a>
+            <a class="nav-link" href="#students">Students</a>
+        </nav>
+
+        <div class="topbar-label">Student Administration</div>
+    </header>
+
+    <main class="container" id="dashboard">
+        <section class="welcome-section">
+            <div>
+                <p class="eyebrow">STUDENT ADMINISTRATION</p>
+                <h1>Student Management</h1>
+                <p class="subtitle">Manage your student records in one place.</p>
+            </div>
+            <button class="primary-button" id="addStudentButton" type="button">
+                <span aria-hidden="true">+</span> Add Student
+            </button>
+        </section>
+
+        <section class="stats-grid" aria-label="Student statistics">
+            <article class="stat-card">
+                <div class="stat-icon purple">ST</div>
+                <p>Total Students</p>
+                <h2 id="totalStudents">0</h2>
+                <span class="stat-note">All registered students</span>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-icon green">AC</div>
+                <p>Active Records</p>
+                <h2 id="activeStudents">0</h2>
+                <span class="stat-note">Valid student records</span>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-icon orange">GR</div>
+                <p>Grade Groups</p>
+                <h2 id="gradeGroups">0</h2>
+                <span class="stat-note">Grades represented</span>
+            </article>
+        </section>
+
+        <section class="panel form-panel" id="studentFormSection">
+            <div class="section-heading">
+                <div>
+                    <h2 id="formTitle">Register a Student</h2>
+                    <p>Add student information using the form below.</p>
+                </div>
+                <button class="text-button hidden" id="cancelEditButton" type="button">
+                    Cancel edit
+                </button>
+            </div>
+
+            <form id="studentForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="studentName">Full Name *</label>
+                        <input id="studentName" name="studentName" type="text"
+                               placeholder="e.g. Ayesha Khan" maxlength="60"
+                               autocomplete="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studentEmail">Email Address *</label>
+                        <input id="studentEmail" name="studentEmail" type="email"
+                               placeholder="e.g. ayesha@example.com" maxlength="100"
+                               autocomplete="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studentGrade">Grade *</label>
+                        <select id="studentGrade" name="studentGrade" required>
+                            <option value="">Select grade</option>
+                            <option value="Grade 1">Grade 1</option>
+                            <option value="Grade 2">Grade 2</option>
+                            <option value="Grade 3">Grade 3</option>
+                            <option value="Grade 4">Grade 4</option>
+                            <option value="Grade 5">Grade 5</option>
+                            <option value="Grade 6">Grade 6</option>
+                            <option value="Grade 7">Grade 7</option>
+                            <option value="Grade 8">Grade 8</option>
+                            <option value="Grade 9">Grade 9</option>
+                            <option value="Grade 10">Grade 10</option>
+                            <option value="Grade 11">Grade 11</option>
+                            <option value="Grade 12">Grade 12</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studentAge">Age *</label>
+                        <input id="studentAge" name="studentAge" type="number"
+                               placeholder="e.g. 12" min="3" max="25" required>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button class="secondary-button" id="resetFormButton" type="reset">
+                        Clear Form
+                    </button>
+                    <button class="primary-button" id="saveStudentButton" type="submit">
+                        Save Student
+                    </button>
+                </div>
+                <p id="formMessage" class="form-message" role="status" aria-live="polite"></p>
+            </form>
+        </section>
+
+        <section class="panel students-panel" id="students">
+            <div class="section-heading">
+                <div>
+                    <h2>Student Records</h2>
+                    <p>Search, filter, update, and manage your records.</p>
+                </div>
+                <span class="record-count" id="recordCount">0 records</span>
+            </div>
+
+            <div class="toolbar">
+                <div class="search-box">
+                    <label class="sr-only" for="searchInput">Search students</label>
+                    <span aria-hidden="true">⌕</span>
+                    <input id="searchInput" type="search"
+                           placeholder="Search by name or email...">
+                </div>
+
+                <div class="filter-box">
+                    <label class="sr-only" for="gradeFilter">Filter by grade</label>
+                    <select id="gradeFilter">
+                        <option value="all">All Grades</option>
+                        <option value="Grade 1">Grade 1</option>
+                        <option value="Grade 2">Grade 2</option>
+                        <option value="Grade 3">Grade 3</option>
+                        <option value="Grade 4">Grade 4</option>
+                        <option value="Grade 5">Grade 5</option>
+                        <option value="Grade 6">Grade 6</option>
+                        <option value="Grade 7">Grade 7</option>
+                        <option value="Grade 8">Grade 8</option>
+                        <option value="Grade 9">Grade 9</option>
+                        <option value="Grade 10">Grade 10</option>
+                        <option value="Grade 11">Grade 11</option>
+                        <option value="Grade 12">Grade 12</option>
+                    </select>
+                </div>
+
+                <button class="secondary-button" id="sortButton" type="button">
+                    Sort A–Z ↑
+                </button>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Student</th>
+                            <th>Email</th>
+                            <th>Grade</th>
+                            <th>Age</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentTableBody">
+                        <!-- JavaScript will render student records here. -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="emptyState" class="empty-state">
+                <div class="empty-icon" aria-hidden="true">▤</div>
+                <h3>No students found</h3>
+                <p>Add a student or change your search and filter.</p>
+            </div>
+
+            <div class="panel-footer">
+                <span id="displaySummary">Showing 0 students</span>
+                <button class="text-button" id="clearFiltersButton" type="button">
+                    Clear filters
+                </button>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>StudentHub &copy; 2026 · Student Management System</p>
+            <p>Built with HTML, CSS and JavaScript</p>
+        </footer>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
